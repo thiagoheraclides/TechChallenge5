@@ -1,0 +1,6 @@
+@Br.Com.FiapTC5.Api_HostAddress = http://localhost:5241
+
+GET {{Br.Com.FiapTC5.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
