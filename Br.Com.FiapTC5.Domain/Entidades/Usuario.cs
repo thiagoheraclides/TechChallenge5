@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Br.Com.FiapTC5.Domain.Entidades
 {
@@ -28,14 +23,41 @@ namespace Br.Com.FiapTC5.Domain.Entidades
         [Column("DS_SENHA")]
         public string? Senha { get; set; }
 
+        //Situação no sistema A -> Ativo, I -> Inativo
+        [Column("FL_SITUACAO")]
+        public string? Situacao { get; set; }
+        
+        [Column("DT_CADASTRO")]
+        public DateTime CadastroEm { get; set; }
+
+        [Column("DT_APROVACAO")]
+        public DateTime? AprovadoEm { get; set; }
+
+        [Column("DT_ULTIMA_ALTERACAO")]
+        public DateTime? UltimaAlteracaoEm { get; set; }
+
         public Usuario() { }
 
-        public Usuario(int? id, string nome, string email, string senha)
+        public Usuario(string? email, string? senha)
         {
-            Id = id;
-            Nome = nome;
             Email = email;
             Senha = senha;
+        }
+
+        public Usuario(string? nome, string? email, string? senha, string situacao, DateTime cadastroEm)
+        {            
+            Nome = nome;
+            Email = email;
+            Senha = senha;   
+            Situacao = situacao;
+            CadastroEm = cadastroEm;
+        }
+
+        public void Aprovar()
+        {
+            Situacao = "A";
+            AprovadoEm = DateTime.Now;
+            UltimaAlteracaoEm = DateTime.Now;
         }
     }
 }

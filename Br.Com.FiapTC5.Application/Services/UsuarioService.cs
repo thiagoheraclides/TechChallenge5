@@ -2,6 +2,8 @@
 using Br.Com.FiapTC5.Domain.Interfaces;
 using Br.Com.FiapTC5.Infra.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Br.Com.FiapTC5.Application.Services
 {
@@ -9,10 +11,69 @@ namespace Br.Com.FiapTC5.Application.Services
     {
         private readonly DatabaseContext _data = data;
 
+        public async Task<Usuario> Acessar(string email, string senha)
+        {
+            if (!await _data.Usuarios.Where(u => u.Email == email).AnyAsync())
+                throw new Exception("Usuário não encontrado.");
+
+            var usuario = await _data.Usuarios.Where(u => u.Email == email).SingleAsync();
+            var hashedSenha = GerarHash256(senha);
+
+            if (hashedSenha != usuario.Senha)
+                throw new Exception("Credenciais de acesso inválidas.");
+
+            return usuario;
+        }
+
+        public async Task Aprovar(int id)
+        {
+
+            if (!await _data.Usuarios.Where(u => u.Id == id).AnyAsync())
+                throw new Exception("Usuário não encontrado.");
+
+            var usuario = await _data.Usuarios.Where(u => u.Id == id).SingleAsync();
+            usuario.Aprovar();
+            await _data.SaveChangesAsync();
+
+        }
+
+        public async Task Cadastrar(Usuario usuario)
+        {
+
+            if (await _data.Usuarios.Where(u => u.Email == usuario.Email).AnyAsync())
+                throw new Exception("Usuário já cadastrado.");
+
+            var hashedSenha = GerarHash256(usuario.Senha!);
+            usuario.Senha = hashedSenha;
+
+            await _data.Usuarios.AddAsync(usuario);
+            await _data.SaveChangesAsync();
+
+        }
+
         public async Task<Usuario> Obter(int id)
             => await _data.Usuarios.Where(ativo => ativo.Id == id).SingleOrDefaultAsync();
 
         public async Task<IEnumerable<Usuario>> Obter()
             => await _data.Usuarios.ToListAsync();
+
+        public async Task<IEnumerable<Usuario>> ObterCadastrosPendentes()
+            => await _data.Usuarios.Where(u => u.Situacao == "I").ToListAsync();
+
+        private static string GerarHash256(string rawData)
+        {
+            byte[] bytes = SHA256.HashData(Encoding.UTF8.GetBytes(rawData));
+
+            StringBuilder builder = new();
+
+            foreach (byte b in bytes)
+            {
+                builder.Append(b.ToString("x2"));
+            }
+            
+            return builder.ToString();
+        }
+
+
     }
 }

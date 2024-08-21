@@ -12,8 +12,11 @@ namespace Br.Com.FiapTC5.Domain.Entidades
         public int? Id { get; set; }
 
         //Tipo do ativo (e.g., Ações, Títulos, Criptomoedas)
-        [Column("NM_TIPO_ATIVO")]
-        public string? TipoAtivo { get; set; }
+        [Column("CD_TIPO_ATIVO")]
+        public int? CodigoTipoAtivo { get; set; }
+
+        [NotMapped]
+        public TipoAtivo? TipoAtivo { get; set; }
 
         //Nome do ativo
         [Column("NM_ATIVO")]
@@ -25,9 +28,10 @@ namespace Br.Com.FiapTC5.Domain.Entidades
 
         public Ativo() { }
 
-        public Ativo(int? id, string? tipoAtivo, string? nome, string? codigo)
+        public Ativo(int? id, int? codigoTipoAtivo, TipoAtivo tipoAtivo, string? nome, string? codigo)
         {
             Id = id;
+            CodigoTipoAtivo = codigoTipoAtivo;
             TipoAtivo = tipoAtivo;
             Nome = nome;
             Codigo = codigo;
