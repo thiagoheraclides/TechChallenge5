@@ -23,5 +23,20 @@ namespace Br.Com.FiapTC5.Api.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        [HttpGet("usuario/{codigoUsuario}")]
+        public async Task<IActionResult> ObterPorUsuario(int codigoUsuario)
+        {
+            try
+            {
+                var portfolio = await _portifolioService.ObterPorUsuario(codigoUsuario);
+                return Ok(portfolio);
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+        }
     }
 }

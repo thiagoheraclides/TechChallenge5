@@ -1,4 +1,5 @@
-﻿using Br.Com.FiapTC5.Domain.Interfaces;
+﻿using Br.Com.FiapTC5.Domain.Entidades;
+using Br.Com.FiapTC5.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Br.Com.FiapTC5.Api.Controllers
@@ -9,7 +10,7 @@ namespace Br.Com.FiapTC5.Api.Controllers
     {
         private readonly IAtivoService _ativoService = ativoService;
 
-        [HttpGet("obter")]
+        [HttpGet]
         public async Task<IActionResult> Obter()
         {
             try
@@ -23,5 +24,22 @@ namespace Br.Com.FiapTC5.Api.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        [HttpGet("usuario/{codigoUsuario}")]
+        public async Task<IActionResult> Obter(int codigoUsuario)
+        {
+            try
+            {
+                IEnumerable<Ativo> ativos = await _ativoService.ObterPorUsuario(codigoUsuario);
+                return Ok(ativos);
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+        }
+
+
     }
 }

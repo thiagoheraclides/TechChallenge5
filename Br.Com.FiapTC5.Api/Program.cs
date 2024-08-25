@@ -17,6 +17,7 @@ namespace Br.Com.FiapTC5.Api
 
             //Dependency Injection
             builder.Services.AddScoped<IAtivoService, AtivoService>();
+            builder.Services.AddScoped<IPerfilService, PerfilService>();
             builder.Services.AddScoped<IPortifolioService, PortfolioService>();
             builder.Services.AddScoped<ITransacaoService, TransacaoService>();
             builder.Services.AddScoped<IUsuarioService, UsuarioService>();

@@ -29,10 +29,10 @@ namespace Br.Com.FiapTC5.Domain.Entidades
 
         public Portifolio() { }
 
-        public Portifolio(int? id, int? usuarioId, string? nome, string? descricao)
-        {
-            Id = id;
-            UsuarioId = usuarioId;
+        public Portifolio(string? nome, string? descricao, Usuario? usuario)
+        {            
+            UsuarioId = usuario!.Id;
+            Usuario = usuario!;
             Nome = nome;
             Descricao = descricao;
         }

@@ -36,6 +36,12 @@ namespace Br.Com.FiapTC5.Domain.Entidades
         [Column("DT_ULTIMA_ALTERACAO")]
         public DateTime? UltimaAlteracaoEm { get; set; }
 
+        [Column("CD_PERFIL")]
+        public int? CodigoPerfil { get; set; }
+
+        [NotMapped]
+        public Perfil? Perfil { get; set; }
+
         public Usuario() { }
 
         public Usuario(string? email, string? senha)

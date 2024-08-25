@@ -8,12 +8,14 @@ namespace Br.Com.FiapTC5.Domain.Interfaces
 
         Task Aprovar(int id);
 
-        Task Cadastrar(Usuario usuario);        
+        Task<Usuario> Cadastrar(Usuario usuario);        
 
         Task<Usuario> Obter(int id);
 
         Task<IEnumerable<Usuario>> Obter();
 
         Task<IEnumerable<Usuario>> ObterCadastrosPendentes();
+
+        Task AssociarPerfil(int codigoUsuario, int codigoPerfil);
     }
 }

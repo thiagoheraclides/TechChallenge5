@@ -7,6 +7,8 @@ namespace Br.Com.FiapTC5.Infra.Data
     {
         public DbSet<Ativo> Ativos { get; set; }
 
+        public DbSet<Perfil> Perfis { get; set; }
+
         public DbSet<Portifolio> Portifolios { get; set; }
 
         public DbSet<Transacao> Transacoes { get; set; }

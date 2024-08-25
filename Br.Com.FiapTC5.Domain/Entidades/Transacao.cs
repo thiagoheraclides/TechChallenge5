@@ -14,7 +14,7 @@ namespace Br.Com.FiapTC5.Domain.Entidades
         //Referência ao portfólio em que a transação foi realizar
         [Column("CD_PORTFOLIO")]
         [ForeignKey("FK_TRANSACAO_PORTFOLIO")]
-        public int? PortfolioId { get; set; }
+        public int? CodigoPortifolio { get; set; }
 
         [NotMapped]
         public Portifolio? Portifolio { get; set; }
@@ -22,19 +22,19 @@ namespace Br.Com.FiapTC5.Domain.Entidades
         //Referência ao ativo negociado
         [Column("CD_ATIVO")]
         [ForeignKey("FK_TRANSACAO_ATIVO")]
-        public int? AtivoId { get; set; }
+        public int? CodigoAtivo { get; set; }
 
         [NotMapped]
         public Ativo? Ativo { get; set; }
 
         //Tipo de transação (Compra ou Venda)
-        [Column("NM_TIPO_TRANSACAO")]
-        public string? TipoTransacao { get; set; }
+        [Column("CD_TIPO_TRANSACAO")]
+        public string TipoTransacao { get; set; }
        
 
         //Quantidade de ativos negociados
         [Column("NR_QUANTIDADE")]
-        public int? Quantidade { get; set; }
+        public decimal Quantidade { get; set; }
 
 
         //Preço por unidade do ativo no momento da transação
@@ -45,13 +45,19 @@ namespace Br.Com.FiapTC5.Domain.Entidades
         [Column("DT_TRANSACAO")]
         public DateTime DataTransacao { get; set; }
 
+        [Column("CD_USUARIO")]
+        public int CodigoUsuario { get; set; }
+
+        [NotMapped]
+        public Usuario? Usuario { get; set; }
+
         public Transacao() { }
 
-        public Transacao(int? id, int? portfolioId, int? ativoId, string? tipoTransacao, int? quantidade, decimal preco, DateTime dataTransacao)
-        {
-            Id = id;
-            PortfolioId = portfolioId;
-            AtivoId = ativoId;
+        public Transacao(int portfolioId, int codigoUsuario, int ativoId, string tipoTransacao, decimal quantidade, decimal preco, DateTime dataTransacao)
+        {           
+            CodigoPortifolio = portfolioId;
+            CodigoUsuario = codigoUsuario;
+            CodigoAtivo = ativoId;
             TipoTransacao = tipoTransacao;
             Quantidade = quantidade;
             Preco = preco;

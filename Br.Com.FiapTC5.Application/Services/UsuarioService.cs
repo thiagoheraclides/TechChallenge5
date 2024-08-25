@@ -37,7 +37,7 @@ namespace Br.Com.FiapTC5.Application.Services
 
         }
 
-        public async Task Cadastrar(Usuario usuario)
+        public async Task<Usuario> Cadastrar(Usuario usuario)
         {
 
             if (await _data.Usuarios.Where(u => u.Email == usuario.Email).AnyAsync())
@@ -49,6 +49,7 @@ namespace Br.Com.FiapTC5.Application.Services
             await _data.Usuarios.AddAsync(usuario);
             await _data.SaveChangesAsync();
 
+            return usuario;
         }
 
         public async Task<Usuario> Obter(int id)
@@ -74,6 +75,19 @@ namespace Br.Com.FiapTC5.Application.Services
             return builder.ToString();
         }
 
+        public async Task AssociarPerfil(int codigoUsuario, int codigoPerfil)
+        {
+            Usuario usuario = await _data.Usuarios
+                .Where(u => u.Id == codigoUsuario).SingleOrDefaultAsync()
+                ?? throw new Exception("Usuário não encontrado.");
 
+            Perfil perfil = await _data.Perfis
+                .Where(p => p.Codigo == codigoPerfil).SingleOrDefaultAsync()
+                ?? throw new Exception("Perfil não encontrado.");
+
+            usuario.CodigoPerfil = codigoPerfil;
+
+            await _data.SaveChangesAsync();
+        }
     }
 }

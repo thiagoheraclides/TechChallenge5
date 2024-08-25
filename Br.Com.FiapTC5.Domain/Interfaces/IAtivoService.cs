@@ -7,5 +7,7 @@ namespace Br.Com.FiapTC5.Domain.Interfaces
         Task<Ativo> Obter(int id);
 
         Task<IEnumerable<Ativo>> Obter();
+
+        Task<IEnumerable<Ativo>> ObterPorUsuario(int codigoUsuario);
     }
 }

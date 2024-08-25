@@ -1,30 +1,40 @@
 ﻿using Br.Com.FiapTC5.Api.DTO.Acesso;
+using Br.Com.FiapTC5.Application.Services;
 using Br.Com.FiapTC5.Domain.Entidades;
 using Br.Com.FiapTC5.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Transactions;
 
 namespace Br.Com.FiapTC5.Api.Controllers
 {
     [ApiController]
     [Route("acesso")]
-    public class AcessoController(IUsuarioService usuarioService) : Controller
+    public class AcessoController(IUsuarioService usuarioService, IPortifolioService portifolioService) : Controller
     {
         private readonly IUsuarioService _usuarioService = usuarioService;
+        private readonly IPortifolioService _portifolioService = portifolioService;
 
 
         [HttpPost("cadastrar")]
         public async Task<IActionResult> Cadastrar(CadastrarDTO cadastroDTO)
         {
+            using TransactionScope transactionScope = new(TransactionScopeAsyncFlowOption.Enabled);
             try
             {
-                Usuario usuario = new(cadastroDTO.Nome, cadastroDTO.Email, cadastroDTO.Senha, "I", DateTime.Now);
-                await _usuarioService.Cadastrar(usuario);
+
+                Usuario usuario = 
+                    await _usuarioService.Cadastrar(new(cadastroDTO.Nome, cadastroDTO.Email, cadastroDTO.Senha, "I", DateTime.Now));
+                Portifolio portifolio = new("Meu portfólio", "Portfólio de investimentos padrão", usuario);
+                await _portifolioService.Inserir(portifolio);
+                transactionScope.Complete();
+
                 return Created();
             }
             catch (Exception e)
             {
-                return BadRequest(new { Erro = new { Mensagem = e.ToString()} });
+                return BadRequest(new { Erro = new { Mensagem = e.ToString() } });
             }
+
         }
 
         [HttpGet("pendente")]

@@ -15,5 +15,21 @@ namespace Br.Com.FiapTC5.Application.Services
         public async Task<IEnumerable<Ativo>> Obter() 
             => await _data.Ativos.ToListAsync();
 
+        public async Task<IEnumerable<Ativo>> ObterPorUsuario(int codigoUsuario)
+        {
+            IList<Ativo> ativos = [];
+            IList<Transacao> transacoes = await _data.Transacoes.Where(transacao => transacao.CodigoUsuario == codigoUsuario).ToListAsync();
+
+            if (transacoes is not null)
+            {
+                foreach(var transacao in transacoes) 
+                {
+                    Ativo ativo = await _data.Ativos.Where(a => a.Id == transacao.CodigoAtivo).FirstAsync();
+                    ativos.Add(ativo);
+                }
+            }
+
+            return ativos;
+        }
     }
 }
