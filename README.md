@@ -37,6 +37,10 @@ Seguimos a estrutura padrão do estilo [RESTful](https://en.wikipedia.org/wiki/R
 
 Projeto criado utilizando .NET 8 com Banco de dados SQL Server, seguindo os princípios da Clean Architecture
 
+## Funcionalidades
+
+![PHOTO-2024-08-25-19-11-11](https://github.com/user-attachments/assets/427d5369-6d61-4ffc-84a5-f0a8f6193be7)
+
 
 ## Testes
 Os testes estão disponibilizados na Solution do projeto, em parte apartada aos binários da API.
@@ -60,7 +64,7 @@ A API será composta de:
   - **Pagamento**: O Sistema permitirá acompanhar os aportes e realizar agendamento de compras de ativos;
  
 
-## Desenvolvedor
+## Desenvolvedores
 - Henrique Dantas
 - Thiago Heraclides
 
