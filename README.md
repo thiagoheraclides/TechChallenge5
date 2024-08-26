@@ -2,9 +2,11 @@
 
 Instruções de build.
 
-## Arquitetura do portal de investimento
+## Arquitetura do Portal de Investimento
 ![TechChallenge5 (1)](https://github.com/user-attachments/assets/9785952d-ccff-4847-aa32-e2b394396c1a)
 
+## Domain Storytelling
+![Portal de Investimentos_2024-07-25](https://github.com/user-attachments/assets/07b4f111-28b6-4de0-a78a-9203ff59d741)
 
 
 ## Banco de dados
