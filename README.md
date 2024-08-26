@@ -2,6 +2,11 @@
 
 Instruções de build.
 
+## Arquitetura do portal de investimento
+![TechChallenge5 (1)](https://github.com/user-attachments/assets/9785952d-ccff-4847-aa32-e2b394396c1a)
+
+
+
 ## Banco de dados
 
 Este projeto foi criado usando banco de dados MS-SQL Server.
