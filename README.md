@@ -1,8 +1,7 @@
 # TechChallenge5
 
 ## Portal de Investimentos
-**A aplicação em .NET que simule um sistema de gestão de investimentos seguindo os princípios da Clean Architecture e com foco em alta qualidade de software**
-**Uma plataforma que permita que os usuários gerenciem seus portfólios de investimentos, incluindo ações, títulos e criptomoedas**
+**A aplicação em .NET que simule um sistema de gestão de investimentos seguindo os princípios da Clean Architecture e com foco em alta qualidade de software. Uma plataforma que permita que os usuários gerenciem seus portfólios de investimentos, incluindo ações, títulos e criptomoedas**
 
 
 
