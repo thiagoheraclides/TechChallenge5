@@ -12,6 +12,8 @@
 ## Domain Storytelling do Portal de Investimentos
 ![Portal de Investimentos_2024-07-25](https://github.com/user-attachments/assets/07b4f111-28b6-4de0-a78a-9203ff59d741)
 
+## Modelo Entidade Relacionamento - Banco de Dados
+![image](https://github.com/user-attachments/assets/2c2b1028-4cd2-43db-a0d5-134fa2982073)
 
 
 ## Banco de dados
