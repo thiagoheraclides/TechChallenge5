@@ -7,9 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{77C4CC8E-B6F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tst", "tst", "{B9FB804A-689D-49E2-A0B1-F70AEF63406D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Br.Com.FiapTC5.Domain", "Br.Com.FiapTc5.Domain\Br.Com.FiapTC5.Domain.csproj", "{B0E344EF-7306-48BE-A4BF-14CC02EB480D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Br.Com.FiapTC5.Domain", "Br.Com.FiapTC5.Domain\Br.Com.FiapTC5.Domain.csproj", "{B0E344EF-7306-48BE-A4BF-14CC02EB480D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Br.Com.FiapTC5.Infra", "Br.Com.FiapTc5.Infra\Br.Com.FiapTC5.Infra.csproj", "{5D65A74C-69A7-4818-8E2F-5BDB95EC5F8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Br.Com.FiapTC5.Infra", "Br.Com.FiapTC5.Infra\Br.Com.FiapTC5.Infra.csproj", "{5D65A74C-69A7-4818-8E2F-5BDB95EC5F8F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Br.Com.FiapTC5.Application", "Br.Com.FiapTC5.Application\Br.Com.FiapTC5.Application.csproj", "{77F8C94B-7B1E-4D74-A537-9B870CBE8179}"
 EndProject
