@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Br.Com.FiapTc5.Domain\Br.Com.FiapTC5.Domain.csproj" />
-    <ProjectReference Include="..\Br.Com.FiapTc5.Infra\Br.Com.FiapTC5.Infra.csproj" />
+    <ProjectReference Include="..\Br.Com.FiapTC5.Domain\Br.Com.FiapTC5.Domain.csproj" />
+    <ProjectReference Include="..\Br.Com.FiapTC5.Infra\Br.Com.FiapTC5.Infra.csproj" />
   </ItemGroup>
 
 </Project>
