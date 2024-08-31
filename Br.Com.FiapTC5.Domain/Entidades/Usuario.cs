@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Br.Com.FiapTC5.Domain.Entidades
 {
@@ -64,6 +66,20 @@ namespace Br.Com.FiapTC5.Domain.Entidades
             Situacao = "A";
             AprovadoEm = DateTime.Now;
             UltimaAlteracaoEm = DateTime.Now;
+        }
+
+        public static string GerarHash256(string rawData)
+        {
+            byte[] bytes = SHA256.HashData(Encoding.UTF8.GetBytes(rawData));
+
+            StringBuilder builder = new();
+
+            foreach (byte b in bytes)
+            {
+                builder.Append(b.ToString("x2"));
+            }
+
+            return builder.ToString();
         }
     }
 }

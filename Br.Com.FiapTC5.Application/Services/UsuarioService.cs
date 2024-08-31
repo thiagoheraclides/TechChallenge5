@@ -17,7 +17,7 @@ namespace Br.Com.FiapTC5.Application.Services
                 throw new Exception("Usuário não encontrado.");
 
             var usuario = await _data.Usuarios.Where(u => u.Email == email).SingleAsync();
-            var hashedSenha = GerarHash256(senha);
+            var hashedSenha = Usuario.GerarHash256(senha);
 
             if (hashedSenha != usuario.Senha)
                 throw new Exception("Credenciais de acesso inválidas.");
@@ -43,7 +43,7 @@ namespace Br.Com.FiapTC5.Application.Services
             if (await _data.Usuarios.Where(u => u.Email == usuario.Email).AnyAsync())
                 throw new Exception("Usuário já cadastrado.");
 
-            var hashedSenha = GerarHash256(usuario.Senha!);
+            var hashedSenha = Usuario.GerarHash256(usuario.Senha!);
             usuario.Senha = hashedSenha;
 
             await _data.Usuarios.AddAsync(usuario);
@@ -60,20 +60,6 @@ namespace Br.Com.FiapTC5.Application.Services
 
         public async Task<IEnumerable<Usuario>> ObterCadastrosPendentes()
             => await _data.Usuarios.Where(u => u.Situacao == "I").ToListAsync();
-
-        private static string GerarHash256(string rawData)
-        {
-            byte[] bytes = SHA256.HashData(Encoding.UTF8.GetBytes(rawData));
-
-            StringBuilder builder = new();
-
-            foreach (byte b in bytes)
-            {
-                builder.Append(b.ToString("x2"));
-            }
-            
-            return builder.ToString();
-        }
 
         public async Task AssociarPerfil(int codigoUsuario, int codigoPerfil)
         {

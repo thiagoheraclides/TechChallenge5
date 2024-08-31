@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Br.Com.FiapTC5.Application"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Br.Com.FiapTC5.Api", "Br.Com.FiapTC5.Api\Br.Com.FiapTC5.Api.csproj", "{ADCEFEB9-041E-4205-BC90-299170E664D4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Br.Com.FiapTC5.Tests", "Br.Com.FiapTC5.Tests\Br.Com.FiapTC5.Tests.csproj", "{6DAB38AA-E99D-4FE2-8BBD-807C7E0436A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{ADCEFEB9-041E-4205-BC90-299170E664D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ADCEFEB9-041E-4205-BC90-299170E664D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ADCEFEB9-041E-4205-BC90-299170E664D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DAB38AA-E99D-4FE2-8BBD-807C7E0436A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DAB38AA-E99D-4FE2-8BBD-807C7E0436A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DAB38AA-E99D-4FE2-8BBD-807C7E0436A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DAB38AA-E99D-4FE2-8BBD-807C7E0436A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +52,7 @@ Global
 		{5D65A74C-69A7-4818-8E2F-5BDB95EC5F8F} = {77C4CC8E-B6F3-41A1-BA57-23731F8716A9}
 		{77F8C94B-7B1E-4D74-A537-9B870CBE8179} = {77C4CC8E-B6F3-41A1-BA57-23731F8716A9}
 		{ADCEFEB9-041E-4205-BC90-299170E664D4} = {77C4CC8E-B6F3-41A1-BA57-23731F8716A9}
+		{6DAB38AA-E99D-4FE2-8BBD-807C7E0436A9} = {B9FB804A-689D-49E2-A0B1-F70AEF63406D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AABA81C7-C134-4F26-963F-46C22F0A9F6F}
