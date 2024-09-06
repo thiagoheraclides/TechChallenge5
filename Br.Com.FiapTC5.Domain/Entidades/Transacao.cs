@@ -6,6 +6,8 @@ namespace Br.Com.FiapTC5.Domain.Entidades
     [Table("TB_TRANSACAO")]
     public class Transacao
     {
+        private int _quantidade;
+
         //Identificador único da transacao
         [Key]
         [Column("CD_TRANSACAO")]
@@ -29,13 +31,22 @@ namespace Br.Com.FiapTC5.Domain.Entidades
 
         //Tipo de transação (Compra ou Venda)
         [Column("CD_TIPO_TRANSACAO")]
-        public string TipoTransacao { get; set; }
+        public string? TipoTransacao { get; set; }
        
 
         //Quantidade de ativos negociados
         [Column("NR_QUANTIDADE")]
-        public decimal Quantidade { get; set; }
+        public int Quantidade 
+        {
+            get { return _quantidade; }
+            set
+            {
+                if (value < 1)
+                    throw new ArgumentOutOfRangeException(nameof(value), "Informe apenas valores positivos superiores à 0.");
 
+                _quantidade = value;
+            }
+        }
 
         //Preço por unidade do ativo no momento da transação
         [Column("VL_TRANSACAO")]
@@ -53,7 +64,7 @@ namespace Br.Com.FiapTC5.Domain.Entidades
 
         public Transacao() { }
 
-        public Transacao(int portfolioId, int codigoUsuario, int ativoId, string tipoTransacao, decimal quantidade, decimal preco, DateTime dataTransacao)
+        public Transacao(int portfolioId, int codigoUsuario, int ativoId, string tipoTransacao, int quantidade, decimal preco, DateTime dataTransacao)
         {           
             CodigoPortifolio = portfolioId;
             CodigoUsuario = codigoUsuario;

@@ -13,6 +13,7 @@ namespace Br.Com.FiapTC5.Tests
             //Arrange
             usuario.Aprovar();
 
+            //Assert
             Assert.Equal("A", usuario.Situacao);
             Assert.NotNull(usuario.AprovadoEm);
             Assert.NotNull(usuario.UltimaAlteracaoEm);

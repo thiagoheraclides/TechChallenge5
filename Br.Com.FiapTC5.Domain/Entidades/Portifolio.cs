@@ -6,6 +6,8 @@ namespace Br.Com.FiapTC5.Domain.Entidades
     [Table("TB_PORTFOLIO")]
     public class Portifolio
     {
+        private IList<Ativo> _ativos;
+
         //Identificador único do portfolio
         [Key]
         [Column("CD_PORTFOLIO")]
@@ -26,6 +28,25 @@ namespace Br.Com.FiapTC5.Domain.Entidades
         //Descrição detalhada do portfólio
         [Column("DS_PORTFOLIO")]
         public string? Descricao { get; set; }
+
+        [NotMapped]
+        public IList<Ativo> Ativos 
+        {
+            get 
+            { 
+                return _ativos;
+            }
+            set 
+            {
+                if (value == null)
+                    throw new Exception("O solicitante não possuí nenhum portifólio");
+
+                if (value.Count == 0)
+                    throw new Exception("O solicitante não possuí nenhum portifólio");
+
+                _ativos = value;
+            }
+        }
 
         public Portifolio() { }
 

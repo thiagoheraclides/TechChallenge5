@@ -10,7 +10,7 @@
 
         public int CodigoAtivo { get; set; }
 
-        public decimal Quantidade { get; set; }
+        public int Quantidade { get; set; }
 
         public decimal Valor { get; set; }
 

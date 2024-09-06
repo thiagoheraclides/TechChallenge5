@@ -16,7 +16,7 @@ namespace Br.Com.FiapTC5.Domain.Entidades
         public int Id { get; set; }
 
         [Column("DS_TIPO_ATIVO")]
-        public required string Descricao { get; set; }
+        public string? Descricao { get; set; }
 
         public TipoAtivo() { }
 

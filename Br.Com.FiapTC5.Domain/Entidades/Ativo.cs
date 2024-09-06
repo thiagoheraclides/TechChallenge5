@@ -6,6 +6,8 @@ namespace Br.Com.FiapTC5.Domain.Entidades
     [Table("TB_ATIVO")]
     public class Ativo
     {
+        private string? _codigo;
+
         //Identificador único do ativo
         [Key]
         [Column("CD_ATIVO")]
@@ -24,11 +26,20 @@ namespace Br.Com.FiapTC5.Domain.Entidades
 
         //Código de negociação do ativo (e.g., AAPL para Apple, BTC para Bitcoin)
         [Column("CD_NEGOCIACAO_ATIVO")]
-        public string? Codigo { get; set; }
+        public string? Codigo
+        {
+            get { return _codigo; }
+            set {
+                if (string.IsNullOrEmpty(value))
+                    throw new ArgumentException("Código de negociação inválido", nameof(Codigo));
+
+                _codigo = value;
+            }
+        }
 
         public Ativo() { }
 
-        public Ativo(int? id, int? codigoTipoAtivo, TipoAtivo tipoAtivo, string? nome, string? codigo)
+        public Ativo(int? id, int? codigoTipoAtivo, TipoAtivo tipoAtivo, string? nome, string codigo)
         {
             Id = id;
             CodigoTipoAtivo = codigoTipoAtivo;
