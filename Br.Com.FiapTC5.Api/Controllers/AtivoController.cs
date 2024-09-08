@@ -4,6 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Br.Com.FiapTC5.Api.Controllers
 {
+    /// <summary>
+    /// Apresentação TC5
+    /// </summary>
+    /// <param name="ativoService"></param>
+
     [ApiController]
     [Route("ativo")]
     public class AtivoController(IAtivoService ativoService) : ControllerBase
