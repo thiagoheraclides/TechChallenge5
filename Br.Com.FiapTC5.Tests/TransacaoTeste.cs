@@ -5,7 +5,7 @@ namespace Br.Com.FiapTC5.Tests
     public class TransacaoTeste
     {
         [Fact]
-        public void Quantidade_NumeroPositivoSuperiorAZero()
+        public void Preco_NumeroPositivoSuperiorAZero()
         {
             //Arrange
             Transacao transacao = new(1, 1, 1, "C", 1, 1.5m, DateTime.Now);
@@ -18,13 +18,13 @@ namespace Br.Com.FiapTC5.Tests
         }
 
         [Fact]
-        public void Quantidade_ExcecaoNumeroNegativo()
+        public void Preco_ExcecaoNumeroNegativo()
         {
             //Arrange
             Transacao transacao = new();
 
             //Arrange            
-            Action action = () => transacao.Quantidade = -1;
+            Action action = () => transacao.Preco = -1;
 
             //Assert
             Assert.Throws<ArgumentOutOfRangeException>(action);
@@ -32,13 +32,13 @@ namespace Br.Com.FiapTC5.Tests
         }
 
         [Fact]
-        public void Quantidade_ExcecaoNumeroZero()
+        public void Preco_ExcecaoNumeroZero()
         {
             //Arrange
             Transacao transacao = new();
 
             //Arrange            
-            Action action = () => transacao.Quantidade = 0;
+            Action action = () => transacao.Preco = 0;
 
             //Assert
             Assert.Throws<ArgumentOutOfRangeException>(action);

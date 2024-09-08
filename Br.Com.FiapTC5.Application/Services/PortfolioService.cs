@@ -30,38 +30,50 @@ namespace Br.Com.FiapTC5.Application.Services
             IList<Ativo> ativos  = [];
 
             IList<Transacao> compras = await _data.Transacoes
-                                                      .Where(transacao => transacao.CodigoUsuario == codigoUsuario && transacao.TipoTransacao == "C")                                                        
-                                                      .ToListAsync();
+                                                  .Where(transacao => transacao.CodigoUsuario == codigoUsuario && transacao.TipoTransacao == "C")                                                  
+                                                  .ToListAsync();
 
             IList<Transacao> vendas = await _data.Transacoes
-                                                      .Where(transacao => transacao.CodigoUsuario == codigoUsuario && transacao.TipoTransacao == "C")
-                                                      .ToListAsync();
+                                      .Where(transacao => transacao.CodigoUsuario == codigoUsuario && transacao.TipoTransacao == "V")
+                                      .ToListAsync();
 
-            
 
-            foreach (var compra in compras) 
+            var comprasSumarizada = compras.GroupBy(c => c.CodigoAtivo)
+                                           .Select(gp => new Transacao
+                                           {
+                                               CodigoAtivo = gp.Key,
+                                               Quantidade = gp.Sum(c => c.Quantidade),
+                                               Preco = gp.Sum(c => c.Preco)
+                                           });
+
+            var vendasSumarizada = compras.GroupBy(c => c.CodigoAtivo)
+                               .Select(gp => new Transacao
+                               {
+                                   CodigoAtivo = gp.Key,
+                                   Quantidade = gp.Sum(c => c.Quantidade),
+                                   Preco = gp.Sum(c => c.Preco)
+                               });
+
+            IList<Transacao> sumario = [];
+
+            foreach (var compra in comprasSumarizada)
             {
-                decimal quantidadeAtualAtivo = 0;
-
-                foreach (var venda in vendas)
+                foreach (var venda in vendasSumarizada)
                 {
                     if (compra.CodigoAtivo == venda.CodigoAtivo)
                     {
-                        quantidadeAtualAtivo = compra.Quantidade - venda.Quantidade;
+                        compra.Quantidade -= venda.Quantidade;                        
                     }
-                        
                 }
-
-                if (quantidadeAtualAtivo > 0)
-                {
-                    ativos.Add(await _data.Ativos.Where(ativo => ativo.Id == compra.CodigoAtivo).FirstOrDefaultAsync());
-                }                    
+                sumario.Add(compra);
             }
 
+            foreach (var transacao in sumario)
+            {
+                ativos.Add(await _data.Ativos.Where(a => a.Id == transacao.CodigoAtivo).FirstOrDefaultAsync());
+            }
 
-            if (ativos.Count > 0)
-                portifolio!.Ativos = ativos;
-
+            portifolio.Ativos = ativos;
 
             return portifolio!;
         }

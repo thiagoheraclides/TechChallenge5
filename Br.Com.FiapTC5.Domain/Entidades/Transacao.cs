@@ -6,7 +6,7 @@ namespace Br.Com.FiapTC5.Domain.Entidades
     [Table("TB_TRANSACAO")]
     public class Transacao
     {
-        private decimal _quantidade;
+        private decimal _preco;
 
         //Identificador único da transacao
         [Key]
@@ -36,21 +36,22 @@ namespace Br.Com.FiapTC5.Domain.Entidades
 
         //Quantidade de ativos negociados
         [Column("NR_QUANTIDADE")]
-        public decimal Quantidade 
+        public decimal Quantidade { get; set; } = 0m;
+
+
+        //Preço por unidade do ativo no momento da transação
+        [Column("VL_TRANSACAO")]
+        public decimal Preco
         {
-            get { return _quantidade; }
+            get { return _preco; }
             set
             {
                 if (value < 1)
                     throw new ArgumentOutOfRangeException(nameof(value), "Informe apenas valores positivos superiores à 0.");
 
-                _quantidade = value;
+                _preco = value;
             }
         }
-
-        //Preço por unidade do ativo no momento da transação
-        [Column("VL_TRANSACAO")]
-        public decimal Preco { get; set; } = 0m;
 
         // Data e hora em que a transação foi efetuada
         [Column("DT_TRANSACAO")]

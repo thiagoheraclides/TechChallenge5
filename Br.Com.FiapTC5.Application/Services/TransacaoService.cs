@@ -11,6 +11,13 @@ namespace Br.Com.FiapTC5.Application.Services
 
         public async Task Inserir(Transacao transacao)
         {
+            if (transacao.TipoTransacao == "V")
+            {
+                decimal soma = await _data.Transacoes.Where(t => t.CodigoAtivo == transacao.CodigoAtivo && t.TipoTransacao == "C").SumAsync(t => t.Quantidade);
+                if (transacao.Quantidade > soma)
+                    throw new Exception("Operação não autoriza, a quantidade de ativos na transação de venda supera a quantidade de ativos comprados");
+            }
+
             await _data.Transacoes.AddAsync(transacao);
             await _data.SaveChangesAsync();
         }
