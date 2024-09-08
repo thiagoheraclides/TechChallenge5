@@ -21,6 +21,7 @@ namespace Br.Com.FiapTC5.Application.Services
         public async Task<IEnumerable<Transacao>> Obter()
             => await _data.Transacoes.ToListAsync();
 
-
+        public async Task<IEnumerable<Transacao>> ObterPorUsuario(int codigoUsuario)
+            => await _data.Transacoes.Where(transacao => transacao.CodigoUsuario == codigoUsuario).ToListAsync();
     }
 }

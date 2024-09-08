@@ -27,15 +27,41 @@ namespace Br.Com.FiapTC5.Application.Services
             Portifolio portifolio = await _data.Portifolios.Where(portfolio => portfolio.UsuarioId == codigoUsuario!)
                                                            .SingleOrDefaultAsync()!;
 
-            int?[]? ativosCodigo = await _data.Transacoes.Where(transacao => transacao.CodigoUsuario == codigoUsuario)
-                                                         .Select(transacao => transacao.CodigoAtivo)
-                                                         .ToArrayAsync();
+            IList<Ativo> ativos  = [];
+
+            IList<Transacao> compras = await _data.Transacoes
+                                                      .Where(transacao => transacao.CodigoUsuario == codigoUsuario && transacao.TipoTransacao == "C")                                                        
+                                                      .ToListAsync();
+
+            IList<Transacao> vendas = await _data.Transacoes
+                                                      .Where(transacao => transacao.CodigoUsuario == codigoUsuario && transacao.TipoTransacao == "C")
+                                                      .ToListAsync();
+
+            
+
+            foreach (var compra in compras) 
+            {
+                decimal quantidadeAtualAtivo = 0;
+
+                foreach (var venda in vendas)
+                {
+                    if (compra.CodigoAtivo == venda.CodigoAtivo)
+                    {
+                        quantidadeAtualAtivo = compra.Quantidade - venda.Quantidade;
+                    }
+                        
+                }
+
+                if (quantidadeAtualAtivo > 0)
+                {
+                    ativos.Add(await _data.Ativos.Where(ativo => ativo.Id == compra.CodigoAtivo).FirstOrDefaultAsync());
+                }                    
+            }
 
 
-            IList<Ativo> ativos = await _data.Ativos.Where(ativo => ativosCodigo.Contains(ativo.Id))
-                                                    .ToListAsync();
+            if (ativos.Count > 0)
+                portifolio!.Ativos = ativos;
 
-            portifolio!.Ativos = ativos;
 
             return portifolio!;
         }

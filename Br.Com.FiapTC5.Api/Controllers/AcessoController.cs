@@ -72,12 +72,15 @@ namespace Br.Com.FiapTC5.Api.Controllers
             {
                 Usuario usuario = await _usuarioService.Acessar(acessoDTO.Email, acessoDTO.Senha);
 
+                if (usuario.Situacao != "A")
+                    throw new Exception("Cadastro pendente de aprovação. Aguarde a aprovação ou entre em contato com o SAC.");
+
                 return Ok(new UsuarioDTO(usuario.Nome, usuario.Email, usuario.Situacao, usuario.CadastroEm, usuario.AprovadoEm, usuario.UltimaAlteracaoEm));
             }
             catch (Exception e)
             {
 
-                return BadRequest(new { Erro = new { Mensagem = e.ToString() } });
+                return BadRequest(new { Erro = new { Mensagem = e.Message } });
             }
         }
     }

@@ -8,6 +8,8 @@ namespace Br.Com.FiapTC5.Domain.Interfaces
 
         Task<IEnumerable<Transacao>> Obter();
 
+        Task<IEnumerable<Transacao>> ObterPorUsuario(int codigoUsuario);
+
         Task Inserir(Transacao transacao);
     }
 }

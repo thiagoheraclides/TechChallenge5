@@ -6,7 +6,7 @@ namespace Br.Com.FiapTC5.Domain.Entidades
     [Table("TB_TRANSACAO")]
     public class Transacao
     {
-        private int _quantidade;
+        private decimal _quantidade;
 
         //Identificador único da transacao
         [Key]
@@ -36,7 +36,7 @@ namespace Br.Com.FiapTC5.Domain.Entidades
 
         //Quantidade de ativos negociados
         [Column("NR_QUANTIDADE")]
-        public int Quantidade 
+        public decimal Quantidade 
         {
             get { return _quantidade; }
             set
@@ -64,7 +64,7 @@ namespace Br.Com.FiapTC5.Domain.Entidades
 
         public Transacao() { }
 
-        public Transacao(int portfolioId, int codigoUsuario, int ativoId, string tipoTransacao, int quantidade, decimal preco, DateTime dataTransacao)
+        public Transacao(int portfolioId, int codigoUsuario, int ativoId, string tipoTransacao, decimal quantidade, decimal preco, DateTime dataTransacao)
         {           
             CodigoPortifolio = portfolioId;
             CodigoUsuario = codigoUsuario;
